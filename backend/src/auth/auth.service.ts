@@ -32,8 +32,8 @@ export class AuthService {
       });
 
       //Passwort aus dem Rückgabeobjekt löschen (zur Sicherheit!)
-      delete user.password;
-      return user;
+      const { password: _, ...userWithoutPassword} = user;
+      return userWithoutPassword;
     } catch(error) {
       if(error instanceof Prisma.PrismaClientKnownRequestError) {
         const prismaError = error as Prisma.PrismaClientKnownRequestError;
