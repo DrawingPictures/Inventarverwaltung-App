@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import {Package, Lock, Mail, AlertCircle, Loader2} from 'lucide-react';
+import '@/app/login/login.css';
 
 export default function LoginPage() {
     const router = useRouter();
@@ -21,7 +22,7 @@ export default function LoginPage() {
         setLoading(true);
 
         try {
-            //Anfrage an Backend
+            //1. Anfrage an Backend
             const response = await fetch('http://localhost:3000/auth/login', {
                 method: 'POST',
                 headers: {
@@ -29,12 +30,21 @@ export default function LoginPage() {
                 },
                 body: JSON.stringify({ email, password }),
             });
-
-            const data = await response.json();
-
+            //2. Prüfen, ob die HTTP-Antwort in Ordnung ist
             if(!response.ok) {
-                throw new Error(data.message || 'Anmeldung fehlgeschlagen. Bitte Zugangsdaten prüfen.');
+                //Falls das Backend ein JSON-Fehlerobjekt schickt, versuchen wir es zu lesen
+                let errorMessage = 'Anmeldung fehlgeschlagen. Bitte Zugangsdaten prüfen.';
+                try {
+                    const errorData = await response.json();
+                    if(errorData.message) errorMessage = errorData.message;
+                } catch {
+                    //Backend hat kein jSON geschickt (z. B. 404/500), Fallback greift
+                }
+                throw new Error(errorMessage);
             }
+
+            //3. Erst jetzt sicher sein, dass es JSON ist, und parsen
+            const data = await response.json();
 
             // JWT Access Token im localStorage speichern
             if(data.access_token) {
