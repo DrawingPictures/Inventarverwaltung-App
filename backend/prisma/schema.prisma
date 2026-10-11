@@ -6,8 +6,7 @@ enum Role {
 }
 
 generator client {
-  provider = "prisma-client"
-  previewFeatures = ["driverAdapters"]
+  provider = "prisma-client-js"
   output          = "../src/generated/prisma"
   moduleFormat = "cjs"
 }

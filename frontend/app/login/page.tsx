@@ -23,7 +23,7 @@ export default function LoginPage() {
 
         try {
             //1. Anfrage an Backend
-            const response = await fetch('http://localhost:3000/auth/login', {
+            const response = await fetch('http://localhost:3001/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export default function LoginPage() {
                         <Package size={32} color="#ffffff" />
                     </div>
                     <h1>Inventarverwaltung</h1>
-                    <p>Bitte melden Sie sich am, um fortzufahren.</p>
+                    <p>Bitte melden Sie sich an, um fortzufahren.</p>
                 </div>
 
                 {/* Fehlermeldung */}
