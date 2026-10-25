@@ -1,0 +1,165 @@
+/* src/app/dashboard/dashboard.module.css */
+
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --sidebar-width: 240px;
+}
+
+.dashboardContainer {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    font-family: inherit;
+}
+
+/* Sidebar Styling */
+
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--card-bg);
+    border-right: 1px solid var(--border-color);
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.navGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.navButton {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-main);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.navButton:hover,
+.activeNav {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+}
+
+/* Main Content Area */
+.mainContent {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    overflow-y: auto;
+}
+
+/* 1. Entwurf: Container für das Kreisdiagramm */
+.chartCard {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.chartCard h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+    font-size: 1.25rem;
+}
+
+.chartWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 280px;
+}
+
+/* 2. Entwurf: Container und Styling für die Tabelle */
+.tableCard {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.tableCard h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+    font-size: 1.25rem;
+}
+
+.tableContainer {
+    width: 100%;
+    overflow-x: auto; /* Horizontales Scrollen auf kleinen Bildschirmen */
+}
+
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.dataTable th,
+.dataTable td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.dataTable th {
+    background-color: #f1f5f9;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+}
+
+.dataTable tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    .dashboardContainer {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 1rem;
+    }
+
+    .navGroup {
+        flex-direction: row;
+        overflow-x: auto;
+    }
+
+    .navButton {
+        white-space: nowrap;
+    }
+
+    .mainContent {
+        padding: 1rem;
+    }
+}
