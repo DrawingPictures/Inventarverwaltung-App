@@ -1,16 +1,5 @@
 /* src/app/dashboard/dashboard.module.css */
 
-:root {
-    --primary-color: #2563eb;
-    --primary-hover: #1d4ed8;
-    --bg-color: #f8fafc;
-    --card-bg: #ffffff;
-    --text-main: #0f172a;
-    --text-muted: #64748b;
-    --border-color: #e2e8f0;
-    --sidebar-width: 240px;
-}
-
 .dashboardContainer {
     display: flex;
     min-height: 100vh;
@@ -108,7 +97,8 @@
 
 .tableContainer {
     width: 100%;
-    overflow-x: auto; /* Horizontales Scrollen auf kleinen Bildschirmen */
+    max-height: 400px;
+    overflow: auto; /*Aktiviert automatisches Scrollen für X- und Y-Achse gleichzeitig*/
 }
 
 .dataTable {
@@ -134,7 +124,36 @@
 }
 
 .dataTable tbody tr:hover {
-    background-color: #f8fafc;
+    background-color: #050505;
+}
+
+/* Statistik-Vorschau Boxen */
+.statsPreview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.statsBox {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.statsBox span {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.statsBox strong {
+    font-size: 1.5rem;
+    color: var(--text-main);
 }
 
 /* Mobile Responsive Design */

@@ -1,26 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --bg-color: #0b0f19;      /* Tiefes Dunkelblau wie auf der Login-Page */
+  --card-bg: #131b2e;       /* Etwas helleres Dunkelblau für die Karten & Sidebar */
+  --text-main: #f8fafc;     /* Fast reines Weiß für Haupttexte */
+  --text-muted: #94a3b8;    /* Sanftes Grau für Labels/Untertitel */
+  --border-color: #1e293b;  /* Dezent dunkle Linien für Ränder */
+  --sidebar-width: 240px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
