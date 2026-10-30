@@ -19,6 +19,7 @@
     "types": ["node", "jest"],
     "paths": {
       "*": ["./node_modules/*", "./src/*"]
-    }
+    },
+    "strictPropertyInitialization": false
   }
 }

@@ -4,7 +4,7 @@ import { UpdateAuthDto } from './dto/update-auth.dto';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { Prisma } from 'generated/prisma/client';
-import { PrismaService } from 'prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class AuthService {
@@ -48,10 +48,13 @@ export class AuthService {
   async login(createAuthDto: CreateAuthDto) {
     const { email, password } = createAuthDto;
 
+    console.log('3. Suche Nutzer in der Datenbank...');
     //Nr.1: User suchen
     const user = await this.prisma.user.findUnique({
       where: { email },
     })
+
+    console.log('4. Nutzer gefunden:', user);
 
     //Nr. 2: Prüfen ob User existiert und ob Passwort korrekt ist
     if(user && (await bcrypt.compare(password, user.password))) {
@@ -63,6 +66,7 @@ export class AuthService {
     } else {
       throw new UnauthorizedException("Ungültige Zugangsdaten!");
     }
+
   }
   
 }

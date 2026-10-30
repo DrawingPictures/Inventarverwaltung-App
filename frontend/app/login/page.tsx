@@ -29,6 +29,7 @@ export default function LoginPage() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ email, password }),
+                credentials: 'include',
             });
             //2. Prüfen, ob die HTTP-Antwort in Ordnung ist
             if(!response.ok) {
@@ -48,11 +49,12 @@ export default function LoginPage() {
 
             // JWT Access Token im localStorage speichern
             if(data.access_token) {
-                localStorage.setItem('token', data.access_token);
+                document.cookie = `token=${data.access_token}; path=/; max-age=${7 * 24 * 60 * 60}; SameSite=Lax`;
             }
 
             //Erfolgreich eingeloggt -> wird zum Dashboard weitergeleitet
             router.push('/dashboard');
+            router.refresh();
 
         } catch(err: any) {
             setError(err.message || 'Ein Fehler ist aufgetreten');
